@@ -3,7 +3,7 @@
 ![RAM Target](https://img.shields.io/badge/RAM_Target-1_GB-purple)
 ![Status](https://img.shields.io/badge/Status-Beta-blue)
 
-# MiniBrowserGecko 🦊📱
+# MinervaBrowserGecko 🦊📱
 
 An ultra-lightweight, high-performance Android web browser built on top of the modern **GeckoView 143** engine. This project is specifically designed and optimized from scratch to breathe new life into legacy hardware, bypassing severe RAM constraints while ruthlessly enforcing resource efficiency.
 
@@ -29,6 +29,7 @@ Tested and verified to render heavy, reactive modern frameworks and real-time co
 * **YouTube (`m.youtube.com`):** Perfect video playback leveraging hardware-accelerated AVC/H.264 decoding. **0 dropped frames** (`0 dropped of 2143`) and fluid stats-for-nerds streaming at native speeds.
 * **Bluesky (`bsky.app`) & X (`x.com`):** Full support for modern single-page apps (SPA), real-time timelines, interactive tabs, dynamic feeds, and smooth scrolling without WebKit-related freeze-ups or memory leaks.
 * **Character.ai (`character.ai` / `c.ai`):** Smooth real-time chat rendering and AI message stream processing without lagging the legacy CPU or triggering low-memory process kills.
+* **gemini (`https://gemini.google.com/`):** Interestingly, it's stable, and it doesn't crash with white pages.
 * **Heavy WebApps:** Capable of loading intensive real-time web games (like Subway Surfers web) and live chat interfaces natively without memory overflow.
 
 ---
@@ -53,6 +54,19 @@ Tested and verified to render heavy, reactive modern frameworks and real-time co
 - [ ] **Extended UI Theme Customization:** Additional visual toggles to adjust rendering layouts directly from the settings bar.
 - [ ] **zoom with 2 fingers:** Pinch with two fingers to zoom in or out on the page
 - [ ] **Avoid crashes on sites like Make It Meme, Twitch.tv, or Discord.com:** I need to find a way to prevent these pages from crashing. It will take time and will depend on the device; they don't open on the **Xperia M2.**
+
+
+---
+
+## 📜 The Lore: Behind the Project 🛠️
+
+Let's be honest: modern mobile web browsing is fundamentally broken for legacy hardware. 
+
+This project didn't start in a corporate office; it started out of pure frustration and a passion for optimization. The challenge? To build a fully functional, modern web browser tailored specifically for devices running **Android 5.0+ (Lollipop/Marshmallow)** with **strictly 1 GB of RAM**—using a legacy **Sony Xperia M2** as the ultimate hardware testing bench.
+
+In a world where modern apps casually consume gigabytes of memory, a 1 GB device is usually treated as electronic waste. Standard browsers trigger instant kernel panic, freeze, or suffer from severe Out-Of-Memory (OOM) process kills when handling modern single-page applications (SPAs). 
+
+**MineBrowserGecko** was created to prove that with aggressive memory recycling, strict pipeline overriding (`DISPLAY_MODE_BROWSER`), and clean native engineering, you don't need a flagship phone to browse the modern web. It’s a love letter to hardware preservation, showing that smart software optimization can keep legendary devices alive against the weight of the modern bloated web. 🚀🦊
 
 ---
 
