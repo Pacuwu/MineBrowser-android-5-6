@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+// ----------------------------------------------------------------------
+// CONFIGURACIÓN DE GECKOVIEW
+// OJO: el canal "stable" se publica como artefacto "geckoview" A SECAS,
+// sin sufijo de canal (a diferencia de beta y nightly, que sí lo llevan:
+// geckoview-beta, geckoview-nightly).
+//
+// IMPORTANTE: a partir de la versión 144, GeckoView exige Android 8.0
+// (API 26) como mínimo. Por eso usamos la 143.0.20251003115653 — es la
+// última build de la rama 143 (3 de octubre de 2025), la última que
+// todavía acepta Android 5.1.1 / API 22.
+// ----------------------------------------------------------------------
+ext {
+    geckoviewVersion = "143.0.20251003115653"
+}
+
+android {
+    namespace 'com.minerva.minibrowser'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.minerva.minibrowser"
+
+        // Android 5.1.1 (Lollipop). El mínimo real que soporta GeckoView es API 21,
+        // así que API 22 funciona sin problema.
+        minSdk 22
+        targetSdk 34
+
+        versionCode 1
+        versionName "1.0"
+
+        // El Xperia M2 (Snapdragon 400) es ARM de 32 bits. Forzamos esta
+        // arquitectura para que el APK sea más pequeño y para no dejar
+        // a Gradle elegir por defecto otra variante (arm64, x86...) que
+        // el M2 no podría ni instalar.
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
+    }
+
+    // GeckoView usa APIs internas de Java 17. Esto es un requisito del ENTORNO
+    // DE COMPILACIÓN (tu PC con Android Studio + JDK 17), no afecta para nada
+    // al dispositivo antiguo donde correrá la app.
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    // GeckoView empaqueta todo su motor (JS, HTML, CSS...) en un archivo
+    // llamado omni.ja. Si Android lo comprime dentro del APK, GeckoView
+    // tiene que descomprimirlo entero en cada arranque, lo cual en un móvil
+    // tan limitado como el M2 puede tardar tanto que el sistema mate la app
+    // por "no responde". Esto lo evita.
+    androidResources {
+        noCompress += "ja"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+// GeckoView arrastra internamente una versión reciente de androidx.core
+// (1.17.0) que exige compileSdk 36 + Android Gradle Plugin 9.x. Esa es una
+// migración grande (AGP 9 cambia cómo se declara Kotlin) e innecesaria para
+// esta app: no usamos nada específico de esas versiones nuevas, solo cosas
+// básicas de Android. Por eso forzamos una versión más antigua y compatible
+// con compileSdk 34, en vez de subir todo el proyecto a AGP 9.
+configurations.all {
+    resolutionStrategy {
+        force 'androidx.core:core:1.13.1'
+        force 'androidx.core:core-ktx:1.13.1'
+    }
+}
+
+dependencies {
+    // El motor del navegador (canal stable -> artefacto "geckoview", sin sufijo)
+    implementation "org.mozilla.geckoview:geckoview:${geckoviewVersion}"
+
+    // Básicos de Android para que AppCompatActivity y los widgets funcionen bien
+    // en versiones antiguas
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+}

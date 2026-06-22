@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Estructura, de arriba a abajo:
+    1) Atrás / Adelante + barra de direcciones + Ir
+    2) Botonera de pestañas: [+] [✕] [Spinner]
+    3) Barra de progreso de carga (fina, solo visible mientras carga)
+    4) GeckoView (ocupa todo el espacio restante)
+    5) Barra de herramientas de abajo: [Refrescar] [Inicio] [Historial],
+       con margen de seguridad incluido para no chocar con la barra de
+       navegación física/virtual del dispositivo.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#111111">
+
+    <!-- ============ 1. ATRÁS / ADELANTE + BARRA DE DIRECCIONES ============ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="←"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#333333"
+            android:padding="0dp" />
+
+        <Button
+            android:id="@+id/btnForward"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:text="→"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#333333"
+            android:padding="0dp" />
+
+        <EditText
+            android:id="@+id/etAddressBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:hint="Buscar o escribir una URL"
+            android:textColorHint="#777777"
+            android:textColor="#FFFFFF"
+            android:background="#1C1C1C"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:imeOptions="actionGo"
+            android:inputType="textUri" />
+
+        <Button
+            android:id="@+id/btnGo"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="6dp"
+            android:text="➔"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#2979FF"
+            android:padding="0dp" />
+
+    </LinearLayout>
+
+    <!-- ============ 2. BOTONERA DE PESTAÑAS ============ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="6dp"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/btnNewTab"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:text="+"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#333333"
+            android:padding="0dp" />
+
+        <Button
+            android:id="@+id/btnCloseTab"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="6dp"
+            android:text="✕"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#B71C1C"
+            android:padding="0dp" />
+
+        <Spinner
+            android:id="@+id/spinnerTabs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:background="#1C1C1C"
+            android:popupBackground="#1C1C1C" />
+
+    </LinearLayout>
+
+    <!-- ============ 3. BARRA DE PROGRESO DE CARGA ============ -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:max="100"
+        android:progressTint="#2979FF"
+        android:visibility="gone" />
+
+    <!-- ============ 5. CONTENEDOR DE GECKOVIEW ============ -->
+    <org.mozilla.geckoview.GeckoView
+        android:id="@+id/geckoView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- ============ 4. BARRA DE HERRAMIENTAS DE ABAJO ============
+         Sustituye al espaciador vacío de antes: ahora ese hueco hace doble
+         function, tiene los botones Y deja margen de seguridad (con el
+         paddingBottom) para no chocar con la barra de navegación. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="24dp"
+        android:gravity="center_vertical"
+        android:background="#111111">
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:text="⟳"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#333333"
+            android:padding="0dp" />
+
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="6dp"
+            android:text="🏠"
+            android:textSize="16sp"
+            android:backgroundTint="#333333"
+            android:padding="0dp" />
+
+        <Button
+            android:id="@+id/btnHistory"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:text="Historial"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#333333" />
+
+    </LinearLayout>
+
+</LinearLayout>

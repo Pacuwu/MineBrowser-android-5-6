@@ -1,0 +1,29 @@
+// Build file de NIVEL RAÍZ del proyecto (no confundir con app/build.gradle)
+buildscript {
+    // GeckoView 143 arrastra internamente kotlin-stdlib 2.2.10. Si el plugin
+    // de Kotlin del proyecto es más antiguo que eso, el compilador no es capaz
+    // de leer esa librería y todo (mutableListOf, trim, contains...) sale como
+    // "Unresolved reference". Por eso lo subimos a juego con lo que pide GeckoView.
+    ext.kotlin_version = '2.2.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.4.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        // Repositorio de Mozilla, necesario para descargar GeckoView
+        maven { url "https://maven.mozilla.org/maven2/" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
