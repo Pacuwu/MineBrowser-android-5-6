@@ -25,19 +25,19 @@ Tested and verified to render heavy, reactive modern frameworks and real-time co
 * **Heavy WebApps:** Capable of loading intensive real-time web games (like Subway Surfers web) and live chat interfaces natively without memory overflow.
 ---
 
-## 🛠️ Project Roadmap & Status (60% Completed)
+## 🛠️ Project Roadmap & Status (85% Completed)
 
-### ✅ Completed Core Architecture
+### ✅ Completed Core Architecture & UI
 - [x] Fully integrated, independent `GeckoRuntime` lifecycle initialization.
 - [x] Dynamic multi-tab system via memory-reusable `GeckoSession` arrays.
 - [x] Custom pop-up and target redirection interception via `NavigationDelegate` hooks.
 - [x] Integrated address bar with smart URL building and automatic Google search routing.
 - [x] Physical keyboard/IME actions support (including `EditorInfo.IME_ACTION_GO` and Enter keys).
 - [x] Strict user-agent spoofing combined with native display properties.
+- [x] **Navigation Controls & Refresh:** Action mapping for page reloading directly integrated into the UI.
+- [x] **Navigation History Menu:** Native localized stack tracking with a dedicated interactive history view.
 
-### ⏳ Remaining Implementation (40% Pending)
-- [ ] **Navigation Controls:** Core hardware refresh action mapping (`session.reload()`).
-- [ ] **Navigation History:** Native localized stack tracking for custom interactive history menus.
+### ⏳ Remaining Implementation (15% Pending)
 - [ ] **Bookmarks System:** Persistent storage for quick links and custom adjustments.
 - [ ] **UI Polishing:** Final touches to the XML layouts and smooth visual transitions between multi-tab configurations.
 
