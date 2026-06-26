@@ -80,3 +80,13 @@ In a world where modern apps casually consume gigabytes of memory, a 1 GB device
 1. Clone this repository.
 2. Ensure you have the GeckoView AAR dependency set up in your `build.gradle`.
 3. Open in Android Studio, hit compile, and deploy the APK to your legacy device or AVD instance. Check out the **Releases** tab to download the pre-compiled Alpha build!
+
+
+
+
+
+**DISCLAIMER**:
+
+# **THIS BROWSER IS NOT INTENDED FOR PIRACY, IT'S PURE FUN**
+
+# **PLEASE JAVIER TEBAS, DO NOT SUE MY BROWSER IF YOU DETECT MISUSE, THANK YOU**
